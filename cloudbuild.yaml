@@ -9,7 +9,7 @@ steps:
 - name: 'us-east1-docker.pkg.dev/jlopez-370123/twistcli/twistcli:latest'
   args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
   env:
-  - 'PCC_CONSOLE_URL=${{ secrets.PCC_CONSOLE_URL }}'
+  - 'PCC_CONSOLE_URL=https://us-east1.cloud.twistlock.com/us-2-158256885'
   - 'PCC_USER=${{ secrets.PCC_USER }}'
   - 'PCC_PASS=${{ secrets.PCC_PASS }}'
 
