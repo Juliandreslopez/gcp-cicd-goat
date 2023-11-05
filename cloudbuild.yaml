@@ -7,7 +7,7 @@ steps:
 #Call the twistcli.sh script passing the image built in the previous step as a PARAMETER
 #all the variables are passed to the Container in the ENV: section
 - name: 'us-east1-docker.pkg.dev/jlopez-370123/twistcli/twistcli:latest'
-  args: ['./twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image@sha256:733cca3c6030c3fb6a31686bc17a779f7fdb1e225289e826aa5cbbdd8c03cf74']
+  args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image@sha256:733cca3c6030c3fb6a31686bc17a779f7fdb1e225289e826aa5cbbdd8c03cf74']
   env:
   - 'PCC_CONSOLE_URL=https://us-east1.cloud.twistlock.com/us-2-158256885'
   - 'PCC_USER=dadbda87-f0b6-40de-8cb8-1f0dcf44e7df'
