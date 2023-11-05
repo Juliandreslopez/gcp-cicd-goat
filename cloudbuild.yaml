@@ -4,21 +4,21 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest', '.']
 
-- name: 'gcr.io/cloud-builders/curl'
-  args: ['-k', '-u', "dadbda87-f0b6-40de-8cb8-1f0dcf44e7df:/5LiNLVwCQXYi6P+G5ML/hmOFz8=", '-o', './twistcli', 'https://us-east1.cloud.twistlock.com/us-2-158256885']
+#- name: 'gcr.io/cloud-builders/curl'
+#  args: ['-k', '-u', "dadbda87-f0b6-40de-8cb8-1f0dcf44e7df:/5LiNLVwCQXYi6P+G5ML/hmOFz8=", '-o', './twistcli', 'https://us-east1.cloud.twistlock.com/us-2-158256885']
 
-- name: 'bash'
-  script: |
-    #!/usr/bin/env bash
-    args: ['chmod a+x ./twistcli', './twistcli images scan --address https://us-east1.cloud.twistlock.com/us-2-158256885 --user dadbda87-f0b6-40de-8cb8-1f0dcf44e7df --password /5LiNLVwCQXYi6P+G5ML/hmOFz8= --details us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
+#- name: 'bash'
+#  script: |
+#    #!/usr/bin/env bash
+#    args: ['chmod a+x ./twistcli', './twistcli images scan --address https://us-east1.cloud.twistlock.com/us-2-158256885 --user dadbda87-f0b6-40de-8cb8-1f0dcf44e7df --password /5LiNLVwCQXYi6P+G5ML/hmOFz8= --details us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
 #Call the twistcli.sh script passing the image built in the previous step as a PARAMETER
 #all the variables are passed to the Container in the ENV: section
-# - name: 'us-east1-docker.pkg.dev/jlopez-370123/twistcli/twistcli:latest'
-#   args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
-#   env:
-#   - 'PCC_CONSOLE_URL=https://us-east1.cloud.twistlock.com/us-2-158256885'
-#   - 'PCC_USER=dadbda87-f0b6-40de-8cb8-1f0dcf44e7df'
-#   - 'PCC_PASS=/5LiNLVwCQXYi6P+G5ML/hmOFz8='
+- name: 'us-east1-docker.pkg.dev/jlopez-370123/twistcli/twistcli:latest'
+  args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
+  env:
+  - 'PCC_CONSOLE_URL=https://us-east1.cloud.twistlock.com/us-2-158256885'
+  - 'PCC_USER=dadbda87-f0b6-40de-8cb8-1f0dcf44e7df'
+  - 'PCC_PASS=/5LiNLVwCQXYi6P+G5ML/hmOFz8='
 
 #If the PRISMA SCAN verdict is continue the Image is pushed to the Google Container Registry
 - name: 'gcr.io/cloud-builders/docker'
