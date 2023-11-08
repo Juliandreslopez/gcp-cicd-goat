@@ -11,9 +11,7 @@ steps:
   entrypoint: /bin/sh
   args: [
   '-c',
-  'curl -k -u $$PCC_USER:$$PCC_PASS --output ./twistcli $$PCC_CONSOLE_URL/api/v1/util/twistcli',
-  'chmod a+x ./twistcli',
-  './twistcli images scan --address $$PCC_CONSOLE_URL --user $$PCC_USER --password $$PCC_PASS --details us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
+  'curl -k -u $$PCC_USER:$$PCC_PASS --output ./twistcli $$PCC_CONSOLE_URL/api/v1/util/twistcli \n chmod a+x ./twistcli \n ./twistcli images scan --address $$PCC_CONSOLE_URL --user $$PCC_USER --password $$PCC_PASS --details us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
   ]
   #args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
   
