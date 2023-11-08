@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python-server-github
+  name: python-server-gcp-cloudbuild
   labels:
     app: python-server-app
 spec:
   selector:
     matchLabels:
         app: python-server-app
-  replicas: 4
+  replicas: 2
   strategy:
     type: RollingUpdate
   template:
