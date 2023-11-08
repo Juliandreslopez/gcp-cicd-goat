@@ -20,3 +20,12 @@ steps:
 #In case the image is pushed to the registry it is displayed in the Pipeline log.
 images:
 - 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
+
+# deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=gke-deployment.yml
+  - --image=us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest
+  - --location=us-east1-b
+  - --cluster=jlopez-gke-cluster
