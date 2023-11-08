@@ -10,8 +10,8 @@ steps:
   args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
   env: 
   - 'PCC_CONSOLE_URL=${_PCC_CONSOLE_URL}'
-  - 'PCC_USER=${_PCC_USER}
-  - 'PCC_PASS=${_PCC_PASS}
+  - 'PCC_USER=${_PCC_USER}'
+  - 'PCC_PASS=${_PCC_PASS}'
   
 #If the PRISMA SCAN verdict is continue the Image is pushed to the Google Container Registry
 - name: 'gcr.io/cloud-builders/docker'
