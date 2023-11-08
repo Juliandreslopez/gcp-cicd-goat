@@ -6,20 +6,12 @@ steps:
 
 #Call the twistcli.sh script passing the image built in the previous step as a PARAMETER
 #all the variables are passed to the Container in the ENV: section
-#- name: 'us-east1-docker.pkg.dev/jlopez-370123/twistcli/twistcli:latest'
-- name: 'ubuntu'
-  entrypoint: bash
-  args: [
-  '-c',
-  'curl -k -u $$PCC_USER:$$PCC_PASS --output ./twistcli $$PCC_CONSOLE_URL/api/v1/util/twistcli \n chmod a+x ./twistcli \n ./twistcli images scan --address $$PCC_CONSOLE_URL --user $$PCC_USER --password $$PCC_PASS --details us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
-  ]
-  #args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
-  
-  secretEnv: [
-      PCC_CONSOLE_URL,
-      PCC_USER,
-      PCC_PASS
-  ]
+- name: 'us-east1-docker.pkg.dev/jlopez-370123/twistcli/twistcli:latest'
+  args: ['/twistcli.sh', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
+  env: 
+  - 'PCC_CONSOLE_URL=${_PCC_CONSOLE_URL}'
+  - 'PCC_USER=${_PCC_USER}
+  - 'PCC_PASS=${_PCC_PASS}
   
 #If the PRISMA SCAN verdict is continue the Image is pushed to the Google Container Registry
 - name: 'gcr.io/cloud-builders/docker'
@@ -28,11 +20,3 @@ steps:
 #In case the image is pushed to the registry it is displayed in the Pipeline log.
 images:
 - 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
-
-availableSecrets:
-  - versionName: projects/183615182034/secrets/_PCC_CONSOLE_URL/versions/1
-    env: 'PCC_CONSOLE_URL'
-  - versionName: projects/183615182034/secrets/_PCC_USER/versions/1
-    env: 'PCC_USER'
-  - versionName: projects/183615182034/secrets/_PCC_PASS/versions/1
-    env: 'PCC_PASS'
