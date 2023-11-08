@@ -12,9 +12,6 @@ steps:
   - 'PCC_CONSOLE_URL=$$_PCC_CONSOLE_URL'
   - 'PCC_USER=$$_PCC_USER'
   - 'PCC_PASS=$$_PCC_PASS'
-
-  secrets:
-  - kmsKeyName: projects/183615182034/secrets/_PCC_CONSOLE_URL/versions/1
   secretEnv: [
       _PCC_CONSOLE_URL,
       _PCC_USER,
@@ -28,3 +25,11 @@ steps:
 #In case the image is pushed to the registry it is displayed in the Pipeline log.
 images:
 - 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
+
+availableSecrets:
+  - versionName: projects/183615182034/secrets/_PCC_CONSOLE_URL/versions/1
+    env: '_PCC_CONSOLE_URL'
+  - versionName: projects/183615182034/secrets/_PCC_USER/versions/1
+    env: '_PCC_USER'
+  - versionName: projects/183615182034/secrets/_PCC_PASS/versions/1
+    env: '_PCC_PASS'
