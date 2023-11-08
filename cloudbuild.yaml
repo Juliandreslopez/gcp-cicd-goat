@@ -1,6 +1,5 @@
 steps:
 #Build the Image
-#We are using a ubuntu image tagged as ubuntu:latest
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest', '.']
 
@@ -13,7 +12,7 @@ steps:
   - 'PCC_USER=${_PCC_USER}'
   - 'PCC_PASS=${_PCC_PASS}'
   
-#If the PRISMA SCAN verdict is continue the Image is pushed to the Google Container Registry
+#Push Image to the Google Artifactory Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest']
 
@@ -25,7 +24,7 @@ images:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args: 
   - 'run'
-  - '--filename=gke-deployment.yml'
+  - '--filename=gs://gke-deployment.yml'
   - '--image=us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest'
   - '--location=us-east1-b'
   - '--cluster=jlopez-gke-cluster'
