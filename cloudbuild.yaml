@@ -24,7 +24,7 @@ images:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args: 
   - run
-  - --filename=gs://gke-deployment.yml
+  #- --filename=gs://gke-deployment.yml
   - --image=us-east1-docker.pkg.dev/jlopez-370123/gcp-prismacloud-demo/gcp-pc-image:latest
   - --location=us-east1-b
   - --cluster=jlopez-gke-cluster
